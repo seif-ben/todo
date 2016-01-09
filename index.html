@@ -1,0 +1,42 @@
+<!doctype html>
+<html ng-app="todoApp">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="todo.js"></script>
+    <link rel="stylesheet" href="todo.css">
+  </head>
+  <body>
+    <h2>Todo</h2>
+    <div ng-controller="TodoListController as todoList">
+
+      <ul class="unstyled">
+        <li ng-repeat="role in todoList.roles">
+          <input type="checkbox" ng-model="role.done">
+          <span class="" ng-bind="role.text"></span>
+          <ul class="unstyled">
+          <li ng-repeat="perimeter in role.perimeter">
+              <span class="" ng-bind="perimeter.id"></span>
+              <ul class="unstyled">
+                <li ng-repeat="axe in perimeter.axe">
+                  <span class="" ng-bind="axe.id"></span>|<span class="" ng-bind="axe.key"></span>|<span class="" ng-bind="axe.value">|</span>||<span ng-click="todoList.removeAxe(role, perimeter, axe)">X</span>
+                </li>
+              </ul>
+              
+              <form ng-submit="todoList.addAxe(role, perimeter)">
+               <input type="text" ng-model="todoList.add.legalEntity" size="30" placeholder="add new legalEnity here">
+               <input type="text" ng-model="todoList.add.process" size="30" placeholder="add new Process here">
+               <input class="btn-primary" type="submit" value="add">
+             </form>
+          </li>
+          </ul>
+          <h5>Add new Perimeter</h5>
+          <form ng-submit="todoList.addPerimeter(role)">
+               <input type="text" ng-model="todoList.add.legalEntity" size="30" placeholder="add new legalEnity here">
+               <input type="text" ng-model="todoList.add.process" size="30" placeholder="add new Process here">
+               <input class="btn-primary" type="submit" value="add">
+          </form>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
